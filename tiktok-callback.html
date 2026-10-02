@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clutch Cinema - TikTok connection</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Connecting TikTok…</h1>
+  <p id="msg">Handing the connection back to the Clutch Cinema app on this computer.</p>
+</main>
+<script>
+  // TikTok only allows HTTPS redirect pages, so this page forwards the one-time login result to
+  // the uploader listening on this same computer. Nothing is stored or sent anywhere else.
+  (function () {
+    var q = window.location.search;
+    var msg = document.getElementById("msg");
+    if (!q) { msg.textContent = "Nothing to do here."; return; }
+    msg.textContent = "Done - you can close this tab if it does not close by itself.";
+    window.location.replace("http://localhost:8765/tiktok/callback" + q);
+  })();
+</script>
+</body>
+</html>
